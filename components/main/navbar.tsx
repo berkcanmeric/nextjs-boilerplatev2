@@ -1,11 +1,8 @@
-import { Button } from '@/components/ui/button';
-
-import Link from 'next/link';
 import ThemeSwitcher from '@/components/ui/theme-switcher';
-import { UserNav } from '../auth/user-nav';
+import Link from 'next/link';
 import { auth } from '../../auth';
-import { SignIn } from '../auth/signin-button';
-import { SignOut } from '../auth/signout-button';
+import { SignInButton } from '../auth/signin-button';
+import { UserNav } from '../auth/user-nav';
 
 export default async function Navbar() {
   const session = await auth();
@@ -33,7 +30,7 @@ export default async function Navbar() {
             />
           ) : (
             <div className='flex items-center gap-x-5'>
-              <SignIn />
+              <SignInButton />
             </div>
           )}
         </div>

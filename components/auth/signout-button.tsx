@@ -1,7 +1,7 @@
 import { signOut } from '@/auth';
 import { IconLogout } from '@tabler/icons-react';
 
-export function SignOut() {
+export function SignOutButton() {
   return (
     <form
       action={async () => {

@@ -1,4 +1,3 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -11,7 +10,8 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { IconHome } from '@tabler/icons-react';
 import Link from 'next/link';
-import { SignOut } from '../auth/signout-button';
+import { SignOutButton } from '../auth/signout-button';
+import UserAvatar from './user-avatar';
 
 export const navItems = [
   {
@@ -32,10 +32,7 @@ export function UserNav({ user }: { user: User }) {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant='ghost' className='relative h-10 w-10 rounded-full'>
-          <Avatar className='h-10 w-10'>
-            <AvatarImage src={user.image} alt={user.name} />
-            <AvatarFallback>BC</AvatarFallback>
-          </Avatar>
+          <UserAvatar />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className='w-56' align='end' forceMount>
@@ -68,7 +65,7 @@ export function UserNav({ user }: { user: User }) {
           className='w-full flex justify-between items-center'
           asChild
         >
-          <SignOut />
+          <SignOutButton />
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
