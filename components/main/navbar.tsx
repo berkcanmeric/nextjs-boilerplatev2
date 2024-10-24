@@ -2,8 +2,16 @@ import { Button } from '@/components/ui/button';
 
 import Link from 'next/link';
 import ThemeSwitcher from '@/components/ui/theme-switcher';
-// import { UserNav } from './UserNav ';
+import { UserNav } from '../auth/user-nav';
+import { auth } from '../../auth';
+import { SignIn } from '../auth/signin-button';
+import { SignOut } from '../auth/signout-button';
+
 export default async function Navbar() {
+  const session = await auth();
+
+  const user = session?.user;
+
   return (
     <nav className='border-b bg-background h-[10vh] flex items-center'>
       <div className='container flex items-center justify-between'>
@@ -15,26 +23,19 @@ export default async function Navbar() {
         </Link>
         <div className='flex items-center gap-x-5'>
           <ThemeSwitcher />
-          {/* {(await isAuthenticated()) ? (
+          {user ? (
             <UserNav
               user={{
-                name: user?.given_name as string,
+                name: user?.name as string,
                 email: user?.email as string,
-                image: user?.picture as string,
+                image: user?.image as string,
               }}
             />
-          ) : ( */}
-          {/* // <div className='flex items-center gap-x-5'>
-            //   <LoginLink>
-            //     <Button>Sign In</Button>
-            //   </LoginLink>
-            //   <div className='flex items-center gap-x-5'>
-            //     <RegisterLink>
-            //       <Button variant='secondary'>Sign Up</Button>
-            //     </RegisterLink>
-            //   </div>
+          ) : (
+            <div className='flex items-center gap-x-5'>
+              <SignIn />
             </div>
-          )} */}
+          )}
         </div>
       </div>
     </nav>
